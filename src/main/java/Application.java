@@ -7,7 +7,18 @@ import javax.persistence.Persistence;
 
 public class Application {
     public static void main(String[] args) {
-        /* Primeira execução com inserção no banco de dados
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("javajpa");
+        EntityManager em = emf.createEntityManager();
+
+        Cliente c = em.find(Cliente.class, 3L);
+
+        System.out.println(c.getNome());
+
+        em.close();
+        emf.close();
+
+        /* Inserção no banco de dados
 
         Cliente cliente1 = new Cliente();
         Cliente cliente2 = new Cliente();
@@ -35,9 +46,6 @@ public class Application {
         conta2.setSaldo(900);
         conta2.setSenha("KimberlyS2Arthur");
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("javajpa");
-        EntityManager em = emf.createEntityManager();
-
         // Inicia transação com banco de dados(Que não seja leitura)
         em.getTransaction().begin();
 
@@ -48,21 +56,15 @@ public class Application {
         em.persist(conta2);
 
         em.getTransaction().commit();
-        em.close();
-        emf.close();
-        System.out.println("Feito!");
+        */
 
+        /* Remoção:
+            Pessoa p = em.find(Cliente.class, 2);
+            em.getTransaction().begin();
+            em.remove(p);
+            em.getTransaction().commit();
          */
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("javajpa");
-        EntityManager em = emf.createEntityManager();
-
-        Cliente c = em.find(Cliente.class, 3L);
-
-        System.out.println(c.getNome());
-
-        em.close();
-        emf.close();
 
     }
 }
