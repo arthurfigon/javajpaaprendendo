@@ -54,7 +54,15 @@ public class Application {
 
          */
 
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("javajpa");
+        EntityManager em = emf.createEntityManager();
 
+        Cliente c = em.find(Cliente.class, 3L);
+
+        System.out.println(c.getNome());
+
+        em.close();
+        emf.close();
 
     }
 }
